@@ -1,6 +1,7 @@
 <?php
 namespace Blog;
 
+use Framework\Renderer;
 use Framework\Router;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -16,11 +17,14 @@ class BlogModule
      */
     protected $router;
 
-    public function __construct(Router $router)
+    private $renderer;
+
+    public function __construct(Router $router, Renderer $renderer)
     {
+        $this->renderer = $renderer;
+        $this->renderer->addPath('blog', __DIR__.'/views' );
 
         $this->router = $router;
-
         $this->router->addRoute('blog.index', '/blog', [$this, 'index']);
         $this->router->addRoute('blog.show', '/blog/{slug}/{id}', [$this, 'show']);
     }
@@ -31,8 +35,7 @@ class BlogModule
      */
     public function index(Request $request)
     {
-
-        return '<h1>Welcome on the blog module</h1>';
+        return $this->renderer->render('@blog/index');
     }
 
     /**
@@ -41,7 +44,9 @@ class BlogModule
      */
     public function show(Request $request)
     {
-
-        return '<h1>Welcome on ' . $request->getAttribute('slug') . '-' . $request->getAttribute('id') . '</h1>';
+        return $this->renderer->render('@blog/show' , [
+            'slug'=> $request->getAttribute('slug'),
+            'id' => $request->getAttribute('id')
+        ]);
     }
 }

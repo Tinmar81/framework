@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\FrameworkTest;
+
 use PHPUnit\Framework\TestCase;
 
 class FrameworkTest extends TestCase
