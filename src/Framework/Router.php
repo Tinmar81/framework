@@ -70,7 +70,8 @@ class Router
      * @return false|string
      * @throws \Aura\Router\Exception\RouteNotFound
      */
-    public function generateUri(string $name, array $params= []) {
+    public function generateUri(string $name, array $params = [])
+    {
         return $this->router->getGenerator()->generate($name, $params);
     }
 }

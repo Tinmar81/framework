@@ -2,15 +2,14 @@
 
 require '../vendor/autoload.php';
 
-$renderer = new \Framework\Renderer();
-$renderer->addPath(dirname(__DIR__). '/app/views');
+$twigRenderer = new \Framework\Renderer\TwigRenderer(dirname(__DIR__) . '/app/views');
 
 $app = new \Framework\App([
 
     \Blog\BlogModule::class
 
-] , [
-    'renderer' => $renderer
+], [
+    'renderer' => $twigRenderer
 ]);
 
 $response = $app->run(GuzzleHttp\Psr7\ServerRequest::fromGlobals());
