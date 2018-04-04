@@ -29,11 +29,11 @@ class Router
     /**
      * @param String $name
      * @param String $path
-     * @param callable $callable
+     * @param string|callable $callable
      *
      * Register a route in the Router mapping
      */
-    public function addRoute(String $name, String $path, callable $callable)
+    public function addRoute(String $name, String $path, $callable)
     {
 
         $map = $this->router->getMap();
