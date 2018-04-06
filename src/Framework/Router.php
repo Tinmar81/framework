@@ -35,7 +35,6 @@ class Router
      */
     public function addRoute(String $name, String $path, $callable)
     {
-
         $map = $this->router->getMap();
         $map->get($name, $path, $callable);
     }

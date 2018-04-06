@@ -53,10 +53,9 @@ class App
             return new Response(404, [], '<h1>Oups... this page does not exist</h1>');
         }
 
-        $parameters =$route->getParameters();
+        $parameters = $route->getParameters();
 
         $request = array_reduce(array_keys($parameters), function ($request, $key) use ($parameters) {
-
             return $request->withAttribute($key, $parameters[$key]);
         }, $request);
 
@@ -66,6 +65,7 @@ class App
         }
 
         $response = call_user_func_array($callback, [$request]);
+
 
         if (is_string($response)) {
             return new Response(200, [], $response);

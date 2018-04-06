@@ -1,9 +1,10 @@
 {% extends 'layout.html.twig' %}
 
-{% block title "Article" %}
+{% block title post.name %}
 
 {% block body%}
 
-<h1>{{slug|capitalize}} {{ id }} </h1>
+<h1>{{post.name|capitalize}} </h1>
+<p>{{ post.content | nl2br}}</p>
 
 {% endblock %}
