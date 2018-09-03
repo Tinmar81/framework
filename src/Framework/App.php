@@ -64,8 +64,9 @@ class App
             $callback = $this->container->get($callback);
         }
 
+        //var_dump($request);
+        //var_dump($callback);
         $response = call_user_func_array($callback, [$request]);
-
 
         if (is_string($response)) {
             return new Response(200, [], $response);
